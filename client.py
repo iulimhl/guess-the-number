@@ -74,6 +74,13 @@ def main():
                     f_out.flush()
                     break
                 if again=="n":
+                    try:
+                        s.shutdown(socket.SHUT_WR)
+                    except:
+                        pass
+                    final_msg=read_line(f_in)
+                    if final_msg is not None:
+                        print(final_msg)
                     return
                 print("Please type y or n.")
     finally:

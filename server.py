@@ -29,8 +29,18 @@ def main():
                     f_out.write(response+"\n")
                     f_out.flush()
         finally:
+            best=session.best_attempts
+            if best is None:
+                best_msg="Your best score this session: N/A"
+            else:
+                best_msg=f"Your best score this session: {best} attempts"
             try:
-                f_in.close()
+                f_out.write(best_msg + "\n")
+                f_out.flush()
+            except:
+                pass
+            try:
+                f_out.close()
             except:
                 pass
             try:
